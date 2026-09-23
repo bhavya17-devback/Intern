@@ -26,14 +26,19 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['donor', 'ngo', 'admin'],
+      enum: ['donor', 'ngo', 'admin', 'Donor', 'NGO', 'Admin'],
       default: 'donor',
     },
     status: {
       type: String,
-      enum: ['active', 'pending','blocked', 'rejected'],
-      default: 'active', // NGOs can be set to 'pending' until Admin approves
+      enum: ['active', 'pending', 'blocked', 'rejected'],
+      default: 'active',
     },
+    // Naye Frontend Fields:
+    city: { type: String, trim: true },
+    address: { type: String, trim: true },
+    regNumber: { type: String, trim: true }, // NGO ke liye
+    focusArea: { type: String, trim: true }, // NGO ke liye
   },
   {
     timestamps: true,

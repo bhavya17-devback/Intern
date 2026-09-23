@@ -4,36 +4,70 @@ const donationSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, 'Please add a title for the donation'],
+      trim: true,
+    },
+    itemName: {
+      type: String,
+      required: [true, 'Please specify item name'],
       trim: true,
     },
     category: {
       type: String,
       required: [true, 'Please select a category'],
-      enum: ['cooked_food', 'raw_ration', 'packaged_food', 'clothes', 'essentials', 'other'],
-      default: 'cooked_food',
     },
     quantity: {
       type: String,
-      required: [true, 'Please specify quantity (e.g., 20 plates, 5 kg, 10 packets)'],
+      required: [true, 'Please specify quantity'],
     },
-    expiryTime: {
-      type: Date,
-      required: [true, 'Please specify expiry date and time'],
-    },
-    pickupAddress: {
+    unit: {
       type: String,
-      required: [true, 'Please provide the pickup address'],
+      default: 'Items',
+    },
+    condition: {
+      type: String,
+      default: 'Gently Used',
+    },
+    description: {
+      type: String,
+      trim: true,
     },
     city: {
       type: String,
       required: [true, 'Please specify the city'],
       trim: true,
     },
+    address: {
+      type: String,
+    },
+    pickupAddress: {
+      type: String,
+    },
+    pickupDate: {
+      type: Date,
+    },
+    contactPhone: {
+      type: String,
+    },
+    coins: {
+      type: Number,
+      default: 10,
+    },
     status: {
       type: String,
-      enum: ['available', 'claimed', 'completed', 'expired', 'cancelled'],
-      default: 'available',
+      enum: [
+        'pending',
+        'available',
+        'claimed',
+        'completed',
+        'expired',
+        'cancelled',
+        'Pending',
+        'Available',
+        'Claimed',
+        'Completed',
+        'Cancelled',
+      ],
+      default: 'pending',
     },
     donor: {
       type: mongoose.Schema.Types.ObjectId,
